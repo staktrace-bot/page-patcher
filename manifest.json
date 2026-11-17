@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "Page Patcher",
+  "version": "0.1.0",
+  "description": "Fix the page you're on by describing the change: unblock paste in password fields, make desktop-only layouts work on a phone, or re-lay-out a page. Uses your own xAI (Grok) API key.",
+  "icons": {
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png"
+  },
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": ["https://api.x.ai/*", "<all_urls>"],
+  "background": {
+    "scripts": ["src/schema.js", "src/prompt.js", "src/background.js"]
+  },
+  "action": {
+    "default_title": "Page Patcher",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "48": "icons/icon-48.png",
+      "96": "icons/icon-96.png"
+    }
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/ops.js", "src/summarize.js", "src/content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["popup/popup.html", "icons/icon-48.png"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "page-patcher@staktrace.com",
+      "strict_min_version": "140.0",
+      "data_collection_permissions": {
+        "required": ["websiteContent"]
+      }
+    },
+    "gecko_android": {
+      "strict_min_version": "142.0"
+    }
+  }
+}

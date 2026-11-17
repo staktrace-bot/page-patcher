@@ -1,0 +1,64 @@
+:root {
+  color-scheme: light dark;
+}
+body {
+  font: 15px/1.45 system-ui, sans-serif;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 12px 16px 32px;
+}
+h1 {
+  font-size: 1.3em;
+}
+h2 {
+  font-size: 1.05em;
+  margin: 1.4em 0 0.4em;
+}
+label {
+  display: block;
+  font-weight: 600;
+  margin: 12px 0 4px;
+}
+input,
+select {
+  font: inherit;
+  width: 100%;
+  padding: 7px 8px;
+  border: 1px solid #8f8f9d;
+  border-radius: 6px;
+  min-height: 38px;
+}
+.row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.row input {
+  flex: 1;
+  width: auto;
+}
+button,
+label.button {
+  font: inherit;
+  font-weight: normal;
+  margin: 0;
+  padding: 7px 14px;
+  min-height: 38px;
+  border: 1px solid #8f8f9d;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+}
+button.primary {
+  background: #0061e0;
+  border-color: #0061e0;
+  color: #fff;
+}
+.muted {
+  opacity: 0.75;
+}
+.small {
+  font-size: 13px;
+}

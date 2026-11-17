@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Page Patcher settings</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <h1>Page Patcher settings</h1>
+
+    <section>
+      <h2>AI model</h2>
+      <p class="muted">Page Patcher sends a condensed outline of the page you're patching (and sometimes a screenshot) to xAI's API, using your own API key. Field values like passwords are never included. Get a key at <a href="https://console.x.ai/" target="_blank" rel="noopener">console.x.ai</a>.</p>
+      <label for="apiKey">xAI API key</label>
+      <div class="row">
+        <input id="apiKey" type="password" autocomplete="off" spellcheck="false" placeholder="xai-…" />
+        <button id="showKey" type="button">Show</button>
+      </div>
+      <label for="model">Model</label>
+      <input id="model" list="models" spellcheck="false" />
+      <datalist id="models">
+        <option value="grok-4.7"></option>
+        <option value="grok-4.3"></option>
+        <option value="grok-4.20-0309-non-reasoning"></option>
+        <option value="grok-4.20-0309-reasoning"></option>
+      </datalist>
+      <p class="muted small">Default is grok-4.7. grok-4.20-0309-non-reasoning is usually faster and cheaper.</p>
+      <label for="screenshot">Send a screenshot</label>
+      <select id="screenshot">
+        <option value="auto">For layout requests (default)</option>
+        <option value="always">Always</option>
+        <option value="never">Never</option>
+      </select>
+      <div class="row">
+        <button id="test" type="button">Test key</button>
+        <span id="testResult" class="small"></span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Floating button</h2>
+      <label for="floatingButton">Show a Page Patcher button on every page</label>
+      <select id="floatingButton">
+        <option value="auto">On Android only (default)</option>
+        <option value="on">Always</option>
+        <option value="off">Never</option>
+      </select>
+      <p class="muted small">On Android, add-on buttons are tucked into the menu. The floating button opens Page Patcher in a panel on top of the page.</p>
+    </section>
+
+    <div class="row">
+      <button id="save" type="button" class="primary">Save</button>
+      <span id="saved" class="small" aria-live="polite"></span>
+    </div>
+
+    <section>
+      <h2>Saved patches</h2>
+      <p class="muted small" id="patchCount"></p>
+      <div class="row">
+        <button id="export" type="button">Export</button>
+        <label class="button" for="import">Import</label>
+        <input id="import" type="file" accept="application/json" hidden />
+      </div>
+    </section>
+
+    <script src="../src/schema.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

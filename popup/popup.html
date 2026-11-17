@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Page Patcher</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <img src="../icons/icon-48.png" alt="" width="20" height="20" />
+      <div class="title">
+        <strong>Page Patcher</strong>
+        <span id="host" class="muted"></span>
+      </div>
+      <a id="options" href="#" title="Settings" aria-label="Settings">⚙</a>
+      <button id="close" type="button" class="icon" title="Close" aria-label="Close" hidden>✕</button>
+    </header>
+
+    <p id="unavailable" class="notice" hidden>Page Patcher can't change this page. Firefox doesn't let add-ons modify built-in pages, add-on store pages, or pages that are still loading.</p>
+
+    <main id="main" hidden>
+      <p id="nokey" class="notice" hidden>Add your xAI API key in <a href="#" id="nokey-link">settings</a> to generate patches.</p>
+
+      <section id="draft" class="card draft" hidden>
+        <div class="label">Applied to this page</div>
+        <p id="draft-desc" class="desc"></p>
+        <p id="draft-warn" class="warn" hidden></p>
+        <details>
+          <summary>Details</summary>
+          <pre id="draft-ops"></pre>
+        </details>
+        <label class="check"><input type="checkbox" id="draft-path" /> <span id="draft-path-label">Only on this page</span></label>
+        <div class="row">
+          <button id="draft-undo" type="button">Undo</button>
+          <button id="draft-save" type="button" class="primary">Save for this site</button>
+        </div>
+        <p class="muted small">Not quite right? Describe what to change below and it will revise this patch.</p>
+      </section>
+
+      <section class="card">
+        <label for="prompt" class="label">What should change on this page?</label>
+        <textarea id="prompt" rows="3" placeholder="e.g. let me paste into the password fields"></textarea>
+        <div class="row">
+          <span id="status" class="muted small" aria-live="polite"></span>
+          <button id="generate" type="button" class="primary">Patch page</button>
+        </div>
+        <p id="error" class="error" hidden></p>
+      </section>
+
+      <section>
+        <div class="label">Saved for <span id="host2"></span></div>
+        <ul id="saved"></ul>
+        <p id="saved-empty" class="muted small">No saved patches for this site yet.</p>
+      </section>
+    </main>
+
+    <template id="item-tpl">
+      <li class="card item">
+        <div class="item-top">
+          <label class="switch" title="Apply automatically on this site">
+            <input type="checkbox" class="enabled" />
+            <span class="slider"></span>
+          </label>
+          <p class="desc"></p>
+        </div>
+        <div class="meta muted small"></div>
+        <div class="row">
+          <details>
+            <summary>Details</summary>
+            <pre class="ops"></pre>
+          </details>
+          <span class="spacer"></span>
+          <button type="button" class="apply">Apply now</button>
+          <button type="button" class="delete">Delete</button>
+        </div>
+      </li>
+    </template>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
